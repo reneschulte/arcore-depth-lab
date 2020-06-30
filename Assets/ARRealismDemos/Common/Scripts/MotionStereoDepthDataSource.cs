@@ -203,6 +203,7 @@ public class MotionStereoDepthDataSource : IDepthDataSource
         {
             _InitializeCameraIntrinsics();
         }
+      //  Debug.Log($"Depth W x H: {m_DepthWidth} x {m_DepthHeight}");
 
         // Accesses the depth image surface data.
         IntPtr planeDoublePtr = IntPtr.Zero;

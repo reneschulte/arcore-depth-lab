@@ -48,6 +48,11 @@ public class DepthMeshCollider : MonoBehaviour
     public GameObject[] Projectiles;
 
     /// <summary>
+    /// Static container to create.
+    /// </summary>
+    public GameObject StaticContainer;
+
+    /// <summary>
     /// Camera of the scene.
     /// </summary>
     [FormerlySerializedAs("sceneCamera")]
@@ -132,17 +137,24 @@ public class DepthMeshCollider : MonoBehaviour
         if (m_Root == null)
         {
             m_Root = new GameObject("Projectiles");
+            // Add static container
+            GameObject container = Instantiate(StaticContainer,
+                SceneCamera.transform.position + (SceneCamera.transform.forward * 2),
+                Quaternion.identity) as GameObject;
+            m_GameObjects.Add(container);
         }
+        else
+        {
+            GameObject bullet = Instantiate(
+                Projectiles[m_Random.Next(Projectiles.Length)],
+                SceneCamera.transform.position + (SceneCamera.transform.forward * ForwardOffset),
+                Quaternion.identity) as GameObject;
 
-        GameObject bullet = Instantiate(
-            Projectiles[m_Random.Next(Projectiles.Length)],
-            SceneCamera.transform.position + (SceneCamera.transform.forward * ForwardOffset),
-            Quaternion.identity) as GameObject;
-
-        Vector3 forceVector = SceneCamera.transform.forward * ProjectileThrust;
-        bullet.GetComponent<Rigidbody>().velocity = forceVector;
-        bullet.transform.parent = m_Root.transform;
-        m_GameObjects.Add(bullet);
+            Vector3 forceVector = SceneCamera.transform.forward * ProjectileThrust;
+            bullet.GetComponent<Rigidbody>().velocity = forceVector;
+            bullet.transform.parent = m_Root.transform;
+            m_GameObjects.Add(bullet);
+        }
     }
 
     /// <summary>

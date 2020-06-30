@@ -36,8 +36,19 @@ Shader "ARRealism/Screen Space Depth Mesh Shader"
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+ //       Tags { "RenderType"="Opaque" }
+        Tags
+        {
+            "Queue" = "Transparent"
+            "RenderType" = "Transparent"
+        }
         LOD 200
+
+        Pass
+        {
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
+        }
 
         CGPROGRAM
         #pragma surface surf Standard addshadow vertex:vert
@@ -175,18 +186,18 @@ Shader "ARRealism/Screen Space Depth Mesh Shader"
                 OUT.normalizedDepth = 1 - (depths[0] - _NormalizedDepthMin) /
                 depthRange;
             }
+            OUT.customColor.a = 0.2;
         }
 
         void surf(Input IN, inout SurfaceOutputStandard o)
         {
             clip(IN.clipValue);
 
-            fixed4 color = tex2D (_PseudoColorTex,
-            float2(0.5, IN.normalizedDepth)) * _Color;
-            o.Albedo = color;
+            fixed4 color = tex2D (_PseudoColorTex, float2(0.5, IN.normalizedDepth)) * _Color;
+            o.Albedo.rgb = color.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = 1;
+            o.Alpha = 0.2;
         }
         ENDCG
     }

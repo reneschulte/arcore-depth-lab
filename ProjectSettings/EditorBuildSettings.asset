@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/ARRealismDemos/DepthEffects/Scenes/DepthEffects.unity
     guid: 65365f54d55fd4b5eb22f167405f3a0b
   - enabled: 1
+    path: Assets/ARRealismDemos/DepthEffects/Scenes/DepthScreenSpaceMesh.unity
+    guid: b31d8c722bcddc845a960d08ccc0fd52
+  - enabled: 1
     path: Assets/ARRealismDemos/MaterialWrap/Scenes/MaterialWrap.unity
     guid: a145e80fd4c6248c6b9cf41c70129d3e
   - enabled: 1
@@ -24,7 +27,7 @@ EditorBuildSettings:
     path: Assets/ARRealismDemos/OrientedReticle/Scenes/OrientedReticle.unity
     guid: e4d4899cf4162600b96557cbcb92f659
   - enabled: 1
-    path: Assets/ARRealismDemos/LaserTag/Scenes/LaserBeam.unity
+    path: Assets/ARRealismDemos/LaserBeam/Scenes/LaserBeam.unity
     guid: 8c45641d85ddfb50c953d51093447a46
   - enabled: 1
     path: Assets/ARRealismDemos/AvatarLocomotion/Scenes/AvatarLocomotion.unity
