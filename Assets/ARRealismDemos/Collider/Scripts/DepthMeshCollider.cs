@@ -137,6 +137,9 @@ public class DepthMeshCollider : MonoBehaviour
         if (m_Root == null)
         {
             m_Root = new GameObject("Projectiles");
+        }
+        else if(m_GameObjects.Count == 0)
+        {
             // Add static container
             GameObject container = Instantiate(StaticContainer,
                 SceneCamera.transform.position + (SceneCamera.transform.forward * 2),
